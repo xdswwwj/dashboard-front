@@ -2,12 +2,14 @@ import { Map, View } from "ol"; // 지도와 뷰 구성 요소
 import TileLayer from "ol/layer/Tile"; // 타일 레이어
 import "ol/ol.css"; // OpenLayers 기본 스타일
 import { fromLonLat, toLonLat } from "ol/proj"; // 좌표 변환 함수
-import { XYZ } from "ol/source";
+import OSM from "ol/source/OSM"; // OSM 타일 소스
 import React, { useEffect, useRef, useState } from "react";
 
 const OpenLayersMap: React.FC = () => {
   const mapRef = useRef<HTMLDivElement | null>(null); // 지도가 렌더링될 DOM 참조
-  const [coordinates, setCoordinates] = useState<[number, number] | null>(null);
+  const [_coordinates, setCoordinates] = useState<[number, number] | null>(
+    null
+  );
 
   useEffect(() => {
     if (!mapRef.current) return;
@@ -17,11 +19,7 @@ const OpenLayersMap: React.FC = () => {
       target: mapRef.current, // 지도를 렌더링할 DOM 요소
       layers: [
         new TileLayer({
-          source: new XYZ({
-            url: "https://api.maptiler.com/maps/a9a518af-006f-436d-a972-2f4424df6916/?key=zX7UzMuZOCyoYAm1uWRy#1.13/0/0",
-            attributions:
-              'Maps © <a href="https://www.maptiler.com/">MapTiler</a>',
-          }),
+          source: new OSM(), // OSM 타일 소스
         }),
       ],
       view: new View({
@@ -33,6 +31,7 @@ const OpenLayersMap: React.FC = () => {
     console.log("map >>", map);
 
     map.on("click", (event) => {
+      console.log("event >>", event);
       const coordinate = toLonLat(event.coordinate);
       setCoordinates([coordinate[0], coordinate[1]]);
       console.log("Clicked at:", coordinate);
@@ -55,14 +54,6 @@ const OpenLayersMap: React.FC = () => {
           height: "100%", // 지도의 높이 설정
         }}
       />
-      {coordinates && (
-        <div>
-          <p>
-            Longitude: {coordinates[0].toFixed(5)}, Latitude:{" "}
-            {coordinates[1].toFixed(5)}
-          </p>
-        </div>
-      )}
     </>
   );
 };
