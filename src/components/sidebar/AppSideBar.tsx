@@ -21,19 +21,9 @@ const data = {
   },
   navMain: [
     {
-      title: "등산 동호회",
+      title: "동호회",
       url: "#",
       icon: Club,
-      items: [
-        {
-          title: "회원",
-          url: "#",
-        },
-        {
-          title: "산행정보",
-          url: "#",
-        },
-      ],
     },
     {
       title: "등산 GPX",
