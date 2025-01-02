@@ -1,6 +1,6 @@
 "use client";
 
-import { Club, MapIcon, Settings2 } from "lucide-react";
+import { ClipboardList, Club, MapIcon, ShieldHalf } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -12,7 +12,6 @@ import {
 import { NavMain } from "@components/nav/NavMain";
 import { NavUser } from "@components/nav/NavUser";
 
-// This is sample data.
 const data = {
   user: {
     name: "도현",
@@ -21,44 +20,55 @@ const data = {
   },
   navMain: [
     {
-      title: "동호회",
+      title: "클럽",
       url: "#",
       icon: Club,
     },
     {
-      title: "등산 GPX",
+      title: "등산",
       url: "#",
       icon: MapIcon,
       items: [
         {
-          title: "운동기록",
-          url: "#",
-        },
-        {
-          title: "다운로드",
+          title: "기록",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "랭킹",
       url: "#",
-      icon: Settings2,
+      icon: ShieldHalf,
       items: [
         {
-          title: "General",
+          title: "명예의 전당",
           url: "#",
         },
         {
-          title: "Team",
+          title: "개인 랭킹",
           url: "#",
         },
         {
-          title: "Billing",
+          title: "클럽 랭킹",
           url: "#",
         },
         {
-          title: "Limits",
+          title: "기간별 랭킹",
+          url: "#",
+        },
+      ],
+    },
+    {
+      title: "게시판",
+      url: "#",
+      icon: ClipboardList,
+      items: [
+        {
+          title: "자유게시판",
+          url: "#",
+        },
+        {
+          title: "개선사항 요청",
           url: "#",
         },
       ],

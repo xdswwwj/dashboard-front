@@ -33,8 +33,8 @@ export function NavMain({
   }[];
 }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+    <SidebarGroup className="border-t border-gray-300">
+      <SidebarGroupLabel>메뉴</SidebarGroupLabel>
 
       <SidebarMenu>
         {items.map((item) => (
