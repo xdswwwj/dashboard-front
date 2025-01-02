@@ -1,5 +1,5 @@
+import OpenLayersMap from "@components/map/OpenLayersMap";
 import React from "react";
-import OpenLayersMap from "./map/OpenLayersMap";
 
 const HomeComponent: React.FC = () => {
   return (

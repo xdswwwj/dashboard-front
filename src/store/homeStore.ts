@@ -1,6 +1,6 @@
+import { createPersistedStore } from "@store/persist/persistMiddleware";
+import { persistOptions } from "@store/persist/persistOptions";
 import { create } from "zustand";
-import { createPersistedStore } from "./persist/persistMiddleware";
-import { persistOptions } from "./persist/persistOptions";
 
 export interface HomeState {
   info: string | null;

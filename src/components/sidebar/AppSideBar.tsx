@@ -9,8 +9,8 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { NavMain } from "../nav/NavMain";
-import { NavUser } from "../nav/NavUser";
+import { NavMain } from "@components/nav/NavMain";
+import { NavUser } from "@components/nav/NavUser";
 
 // This is sample data.
 const data = {

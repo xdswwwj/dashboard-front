@@ -1,5 +1,5 @@
+import { SidebarTrigger } from "@components/ui/sidebar";
 import React from "react";
-import { SidebarTrigger } from "../ui/sidebar";
 
 const CommonHeader: React.FC = () => {
   return (

@@ -14,9 +14,6 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({ children }) => {
       <SidebarInset>
         <CommonHeader />
         <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
-        {/* <footer className="fixed bottom-0 w-full bg-gray-800 text-white p-4">
-          This is a fixed footer.
-        </footer> */}
       </SidebarInset>
     </SidebarProvider>
   );

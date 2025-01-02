@@ -1,6 +1,6 @@
-import CommonLayout from "@/layout/CommonLayout";
+import HomeContainer from "@containers/HomeContainer";
+import CommonLayout from "@layout/CommonLayout";
 import React from "react";
-import HomeContainer from "../containers/HomeContainer";
 
 const HomePage: React.FC = () => {
   return (
