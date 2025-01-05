@@ -9,15 +9,11 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import useUserStore from "@/store/userStore";
 import { NavMain } from "@components/nav/NavMain";
 import { NavUser } from "@components/nav/NavUser";
 
 const data = {
-  user: {
-    name: "도현",
-    email: "dohyun8736@gmail.com",
-    avatar: "/avatars/shadcn.jpg",
-  },
   navMain: [
     {
       title: "클럽",
@@ -77,10 +73,14 @@ const data = {
 };
 
 const AppSidebar = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
+  const { user } = useUserStore();
+  if (user === null) {
+    return <></>;
+  }
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <NavUser user={data.user} />
+        <NavUser user={user} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
