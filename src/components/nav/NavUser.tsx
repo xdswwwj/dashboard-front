@@ -1,7 +1,8 @@
 "use client";
 
-import { BadgeCheck, Bell, ChevronsUpDown, LogOut } from "lucide-react";
+import { Bell, ChevronsUpDown, LogOut, SquareUserRound } from "lucide-react";
 
+import { loginUrl } from "@/config/url";
 import {
   clearAccessToken,
   clearPersistedStates,
@@ -72,7 +73,7 @@ export function NavUser({ user }: { user: UserInterface }) {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <BadgeCheck />
+                <SquareUserRound />
                 마이페이지
               </DropdownMenuItem>
               <DropdownMenuItem>
@@ -85,7 +86,7 @@ export function NavUser({ user }: { user: UserInterface }) {
               onClick={() => {
                 clearAccessToken();
                 clearPersistedStates();
-                navigate("/login");
+                navigate(loginUrl);
               }}
             >
               <LogOut />
