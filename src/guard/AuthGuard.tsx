@@ -1,4 +1,5 @@
 // AuthGuard.jsx
+import useUserStore from "@/store/userStore";
 import React, { ReactNode } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
@@ -7,8 +8,9 @@ interface AuthGuardProps {
 }
 
 const AuthGuard: React.FC<AuthGuardProps> = ({ children }) => {
-  const isAuthenticated = !!localStorage.getItem("authToken"); // 간단한 인증 로직 예시
-  console.log("trest");
+  const { token } = useUserStore();
+  const isAuthenticated = !!token;
+
   if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }

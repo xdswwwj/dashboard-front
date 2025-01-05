@@ -32,7 +32,7 @@
       "@lib/*": ["src/lib/*"],
       "@pages/*": ["src/pages/*"],
       "@providers/*": ["src/providers/*"],
-      "@router/*": ["src/router/*"],
+      "@router/*": ["src/guard/*"],
       "@services/*": ["src/services/*"],
       "@store/*": ["src/store/*"]
     }

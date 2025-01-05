@@ -22,6 +22,10 @@ const LoginContainer: React.FC = () => {
             <LoginForm form={form} />
           </CardContent>
         </Card>
+        <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 hover:[&_a]:text-primary">
+          계속 진행하면 <a href="#">이용 약관</a> 및
+          <a href="#">개인정보 보호 정책</a>에 동의하게 됩니다.
+        </div>
       </div>
     </FormProvider>
   );

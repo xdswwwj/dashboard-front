@@ -1,14 +1,40 @@
-export interface InfoResponse {
-  id: number;
-  name: string;
-  description: string;
+import { fetcher } from "@/lib/fetch";
+import useUserStore from "@/store/userStore";
+import { useQuery } from "@tanstack/react-query";
+import { jwtDecode, JwtPayload } from "jwt-decode";
+
+export interface JwtTokenPayload extends JwtPayload {
+  id: string;
+  email: string;
+  provider: string;
 }
 
-export const fetchInfo = async (): Promise<InfoResponse> => {
-  const response = await fetch("/api/info");
-  if (!response.ok) {
-    throw new Error("Failed to fetch info");
-  }
-  const data: InfoResponse = await response.json();
-  return data;
+export const useKakaoLogin = () => {
+  return useQuery({
+    queryKey: ["kakaoLogin"],
+    queryFn: async () =>
+      await fetcher(`/auth/kakao`, {
+        method: "GET",
+      }),
+  });
+};
+
+export const useUserInfo = (options = {}) => {
+  const { token: storeToken } = useUserStore();
+  const token: JwtTokenPayload | null = storeToken
+    ? jwtDecode(storeToken)
+    : null;
+  return useQuery({
+    queryKey: ["userInfo"],
+    queryFn: async () =>
+      await fetcher(
+        `/user/info`,
+        {
+          method: "POST",
+          body: JSON.stringify({ id: token?.id }),
+        },
+        storeToken
+      ),
+    ...options,
+  });
 };

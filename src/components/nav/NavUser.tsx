@@ -2,6 +2,10 @@
 
 import { BadgeCheck, Bell, ChevronsUpDown, LogOut } from "lucide-react";
 
+import {
+  clearAccessToken,
+  clearPersistedStates,
+} from "@/store/persist/persistUtils";
 import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
 import {
   DropdownMenu,
@@ -18,6 +22,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@components/ui/sidebar";
+import { useNavigate } from "react-router-dom";
 
 export function NavUser({
   user,
@@ -28,6 +33,7 @@ export function NavUser({
     avatar: string;
   };
 }) {
+  const navigate = useNavigate();
   const { isMobile } = useSidebar();
 
   return (
@@ -80,7 +86,13 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                clearAccessToken();
+                clearPersistedStates();
+                navigate("/login");
+              }}
+            >
               <LogOut />
               로그아웃
             </DropdownMenuItem>

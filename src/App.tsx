@@ -1,12 +1,15 @@
+import AuthGuard from "@/guard/AuthGuard";
 import HomePage from "@pages/HomePage";
-import AuthGuard from "@router/AuthGuard";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
+import SocialLoginSuccessRedirect from "./routes/SocialLoginSuccessRedirect";
 
 function App() {
   return (
     <Router>
       <Routes>
+        <Route path="/login-success" element={<SocialLoginSuccessRedirect />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route
           path="/"
           element={
@@ -15,7 +18,6 @@ function App() {
             </AuthGuard>
           }
         />
-        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
   );

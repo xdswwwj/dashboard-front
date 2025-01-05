@@ -11,3 +11,7 @@ export const clearPersistedStates = () => {
     }
   });
 };
+
+export const clearAccessToken = () => {
+  localStorage.removeItem("accessToken");
+};

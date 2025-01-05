@@ -1,8 +1,11 @@
-import { HomeState } from "../homeStore";
+import { UserState } from "../userStore";
 
 export const persistOptions = {
-  home: {
-    name: "home-storage",
-    partialize: (state: HomeState) => ({ info: state.info }),
+  user: {
+    name: "user-storage",
+    partialize: (state: UserState) => ({
+      token: state.token,
+      user: state.user,
+    }),
   },
 };
