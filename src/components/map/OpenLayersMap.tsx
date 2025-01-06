@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 const OpenLayersMap: React.FC = () => {
   const mapRef = useRef<HTMLDivElement | null>(null); // 지도가 렌더링될 DOM 참조
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_coordinates, setCoordinates] = useState<[number, number] | null>(
     null
   );
