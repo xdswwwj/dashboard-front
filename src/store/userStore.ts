@@ -7,6 +7,8 @@ export interface UserInterface {
   email?: string;
   image?: string;
   name?: string;
+  nickname?: string;
+  sex?: number;
   phone?: string;
   provider?: string;
 }

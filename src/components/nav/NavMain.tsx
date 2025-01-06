@@ -33,7 +33,7 @@ export function NavMain({
   }[];
 }) {
   return (
-    <SidebarGroup className="border-t border-gray-300">
+    <SidebarGroup className="border-t">
       <SidebarGroupLabel>메뉴</SidebarGroupLabel>
 
       <SidebarMenu>

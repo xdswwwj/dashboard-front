@@ -2,7 +2,7 @@
 
 import { Bell, ChevronsUpDown, LogOut, SquareUserRound } from "lucide-react";
 
-import { loginUrl } from "@/config/url";
+import { URL } from "@/config/url";
 import {
   clearAccessToken,
   clearPersistedStates,
@@ -72,7 +72,11 @@ export function NavUser({ user }: { user: UserInterface }) {
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  navigate(URL.mypageUrl);
+                }}
+              >
                 <SquareUserRound />
                 마이페이지
               </DropdownMenuItem>
@@ -86,7 +90,7 @@ export function NavUser({ user }: { user: UserInterface }) {
               onClick={() => {
                 clearAccessToken();
                 clearPersistedStates();
-                navigate(loginUrl);
+                navigate(URL.loginUrl);
               }}
             >
               <LogOut />

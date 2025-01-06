@@ -1,14 +1,16 @@
-export const mainUrl = "/";
+export const URL = {
+  mainUrl: "/",
 
-// auth
-export const loginUrl = "/login";
-export const loginSuccessUrl = "/login-success";
-export const resigterUrl = "/register";
-export const myPageUrl = "/my-page";
+  // auth
+  loginUrl: "/login",
+  loginSuccessUrl: "/login-success",
+  resigterUrl: "/register",
+  mypageUrl: "/my-page",
 
-// club
-export const clubUrl = "/club";
-export const clubCreateUrl = "/club/create";
-export const clubDetailUrl = "/club/:clubId";
-export const clubEditUrl = "/club/:clubId/edit";
-export const clubListUrl = "/clubs";
+  // club
+  clubUrl: "/club",
+  clubCreateUrl: "/club/create",
+  clubDetailUrl: "/club/:clubId",
+  clubEditUrl: "/club/:clubId/edit",
+  clubListUrl: "/clubs",
+};

@@ -39,7 +39,9 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({ children }) => {
       <AppSidebar />
       <SidebarInset>
         <CommonHeader />
-        <main className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</main>
+        <main className="flex flex-1 flex-col gap-4 p-4 pt-0 border-t">
+          {children}
+        </main>
       </SidebarInset>
     </SidebarProvider>
   );

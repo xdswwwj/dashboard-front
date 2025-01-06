@@ -17,3 +17,35 @@ export const loginFormSchema = z.object({
   id: idSchema,
   password: passwordSchema,
 });
+
+export const loginDefaultValues = {
+  id: "",
+  password: "",
+};
+
+export const accountFormSchema = z.object({
+  name: z.string().email({ message: "이름을 입력해주세요." }),
+  email: z.string().email({ message: "올바른 이메일을 입력해주세요." }),
+  nickname: z.string().min(2, { message: "닉네임을 입력해주세요." }),
+  sex: z.number().int().min(1).max(2),
+});
+
+export const accountDefaultValues = (user: {
+  name: string;
+  email: string;
+  nickname: string;
+  sex: number;
+}) => {
+  return {
+    name: user.name ? user.name : "",
+    email: user.email ? user.email : "",
+    nickname: user.nickname ? user.nickname : "",
+    sex: user.sex ? user.sex : 1,
+  };
+};
+
+export const myPagePasswordChangeFormSchema = z.object({
+  password: passwordSchema,
+  newPassword: passwordSchema,
+  newPasswordConfirm: passwordSchema,
+});
