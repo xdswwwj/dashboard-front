@@ -37,86 +37,92 @@ const MyPageContainer: React.FC = () => {
       sex: user?.sex ? user.sex : 0,
     }),
   });
+
+  function onSubmit(values: z.infer<typeof accountFormSchema>) {
+    console.log(values);
+  }
   return (
     <>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-6">
         <Card>
           <FormProvider {...accountForm}>
-            <CardHeader>
-              <CardTitle>회원정보</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <FormField
-                control={accountForm.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>이름</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={accountForm.control}
-                name="nickname"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>닉네임</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={accountForm.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>이메일</FormLabel>
-                    <FormControl>
-                      <Input {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={accountForm.control}
-                name="sex"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>성별</FormLabel>
-                    <FormControl>
-                      <div className="flex gap-2">
-                        <Button
-                          type="button"
-                          variant={field.value === 1 ? "default" : "outline"} // 선택된 상태에 따라 스타일 변경
-                          onClick={() => field.onChange(1)} // 남성 선택 시
-                        >
-                          남
-                        </Button>
-                        <Button
-                          type="button"
-                          variant={field.value === 2 ? "default" : "outline"} // 선택된 상태에 따라 스타일 변경
-                          onClick={() => field.onChange(2)} // 여성 선택 시
-                        >
-                          여
-                        </Button>
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </CardContent>
-            <CardFooter>
-              <Button>Save changes</Button>
-            </CardFooter>
+            <form onSubmit={accountForm.handleSubmit(onSubmit)}>
+              <CardHeader>
+                <CardTitle>회원정보</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-2">
+                <FormField
+                  control={accountForm.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>이름</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={accountForm.control}
+                  name="nickname"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>닉네임</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={accountForm.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>이메일</FormLabel>
+                      <FormControl>
+                        <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={accountForm.control}
+                  name="sex"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>성별</FormLabel>
+                      <FormControl>
+                        <div className="flex gap-2">
+                          <Button
+                            type="button"
+                            variant={field.value === 1 ? "default" : "outline"} // 선택된 상태에 따라 스타일 변경
+                            onClick={() => field.onChange(1)} // 남성 선택 시
+                          >
+                            남
+                          </Button>
+                          <Button
+                            type="button"
+                            variant={field.value === 2 ? "default" : "outline"} // 선택된 상태에 따라 스타일 변경
+                            onClick={() => field.onChange(2)} // 여성 선택 시
+                          >
+                            여
+                          </Button>
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </CardContent>
+              <CardFooter>
+                <Button>Save changes</Button>
+              </CardFooter>
+            </form>
           </FormProvider>
         </Card>
 

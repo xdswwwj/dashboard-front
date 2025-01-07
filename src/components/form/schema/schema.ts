@@ -24,7 +24,7 @@ export const loginDefaultValues = {
 };
 
 export const accountFormSchema = z.object({
-  name: z.string().email({ message: "이름을 입력해주세요." }),
+  name: z.string().min(2, { message: "이름을 입력해주세요." }),
   email: z.string().email({ message: "올바른 이메일을 입력해주세요." }),
   nickname: z.string().min(2, { message: "닉네임을 입력해주세요." }),
   sex: z.number().int().min(1).max(2),

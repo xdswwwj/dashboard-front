@@ -38,3 +38,14 @@ export const useUserInfo = (options = {}) => {
     ...options,
   });
 };
+
+export const useUpdateUserInfo = () => {
+  return useQuery({
+    queryKey: ["updateUserInfo"],
+    queryFn: async (data: any) =>
+      await fetcher(`/user/update`, {
+        method: "POST",
+        body: JSON.stringify(data),
+      }),
+  });
+};

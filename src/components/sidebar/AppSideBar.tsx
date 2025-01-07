@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardList, Club, MapIcon, ShieldHalf } from "lucide-react";
+import { ClipboardList, Club, House, MapIcon, ShieldHalf } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -15,6 +15,11 @@ import { NavUser } from "@components/nav/NavUser";
 
 const data = {
   navMain: [
+    {
+      title: "홈",
+      url: "#",
+      icon: House,
+    },
     {
       title: "클럽",
       url: "#",
