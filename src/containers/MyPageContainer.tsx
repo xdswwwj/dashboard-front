@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useUpdateUserInfoMutation } from "@/services/api";
 import useUserStore from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -37,10 +38,12 @@ const MyPageContainer: React.FC = () => {
       sex: user?.sex ? user.sex : 0,
     }),
   });
+  const mutation = useUpdateUserInfoMutation();
 
-  function onSubmit(values: z.infer<typeof accountFormSchema>) {
+  const onSubmit = async (values: z.infer<typeof accountFormSchema>) => {
     console.log(values);
-  }
+    await mutation.mutateAsync(values);
+  };
   return (
     <>
       <div className="flex flex-1 flex-col gap-4 p-4 pt-6">
@@ -120,7 +123,7 @@ const MyPageContainer: React.FC = () => {
                 />
               </CardContent>
               <CardFooter>
-                <Button>Save changes</Button>
+                <Button type="submit">Save changes</Button>
               </CardFooter>
             </form>
           </FormProvider>

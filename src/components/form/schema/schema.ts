@@ -30,12 +30,14 @@ export const accountFormSchema = z.object({
   sex: z.number().int().min(1).max(2),
 });
 
-export const accountDefaultValues = (user: {
+export interface AccountFormValues {
   name: string;
   email: string;
   nickname: string;
   sex: number;
-}) => {
+}
+
+export const accountDefaultValues = (user: AccountFormValues) => {
   return {
     name: user.name ? user.name : "",
     email: user.email ? user.email : "",
