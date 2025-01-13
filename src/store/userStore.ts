@@ -14,20 +14,22 @@ export interface UserInterface {
 }
 
 export interface UserState {
-  token: string | null;
+  token: string;
   setToken: (payload: string) => void;
 
   user: UserInterface | null;
   setUser: (payload: UserInterface) => void;
+  clearUser: () => void;
 }
 
 const useUserStore = create<UserState>()(
   createPersistedStore(
     (set) => ({
-      token: null,
+      token: "",
       setToken: (payload: string) => set({ token: payload }),
       user: null,
       setUser: (payload) => set({ user: payload }),
+      clearUser: () => set({ user: null }),
     }),
     persistOptions.user
   )

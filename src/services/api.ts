@@ -1,5 +1,5 @@
 import { AccountFormValues } from "@/components/form/schema/schema";
-import { fetcher } from "@/lib/fetch";
+import { authFetcher, fetcher } from "@/lib/fetch";
 import useUserStore from "@/store/userStore";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { jwtDecode, JwtPayload } from "jwt-decode";
@@ -41,11 +41,16 @@ export const useUserInfo = (options = {}) => {
 };
 
 export const useUpdateUserInfoMutation = () => {
+  const { token: storeToken } = useUserStore();
   return useMutation({
     mutationFn: async (data: AccountFormValues) =>
-      await fetcher(`/user/update`, {
-        method: "POST",
-        body: JSON.stringify(data),
-      }),
+      authFetcher(
+        `/user/update`,
+        {
+          method: "POST",
+          body: JSON.stringify(data),
+        },
+        storeToken
+      ),
   });
 };

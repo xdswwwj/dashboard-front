@@ -38,11 +38,18 @@ const MyPageContainer: React.FC = () => {
       sex: user?.sex ? user.sex : 0,
     }),
   });
-  const mutation = useUpdateUserInfoMutation();
+  const { mutate } = useUpdateUserInfoMutation();
 
-  const onSubmit = async (values: z.infer<typeof accountFormSchema>) => {
+  const onSubmit = (values: z.infer<typeof accountFormSchema>) => {
     console.log(values);
-    await mutation.mutateAsync(values);
+    mutate(values, {
+      onSuccess: (data) => {
+        console.log("Update successful", data);
+      },
+      onError: (error) => {
+        console.error("Update failed", error);
+      },
+    });
   };
   return (
     <>
