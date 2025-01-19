@@ -24,6 +24,7 @@ export const loginDefaultValues = {
 };
 
 export const accountFormSchema = z.object({
+  id: z.number(),
   name: z.string().min(2, { message: "이름을 입력해주세요." }),
   email: z.string().email({ message: "올바른 이메일을 입력해주세요." }),
   nickname: z.string().min(2, { message: "닉네임을 입력해주세요." }),
@@ -31,6 +32,7 @@ export const accountFormSchema = z.object({
 });
 
 export interface AccountFormValues {
+  id: number;
   name: string;
   email: string;
   nickname: string;
@@ -39,6 +41,7 @@ export interface AccountFormValues {
 
 export const accountDefaultValues = (user: AccountFormValues) => {
   return {
+    id: user.id,
     name: user.name ? user.name : "",
     email: user.email ? user.email : "",
     nickname: user.nickname ? user.nickname : "",

@@ -2,7 +2,7 @@
 
 import { Bell, ChevronsUpDown, LogOut, SquareUserRound } from "lucide-react";
 
-import { URL } from "@/config/url";
+import URL from "@/config/url";
 import {
   clearAccessToken,
   clearPersistedStates,

@@ -1,4 +1,4 @@
-export const URL = {
+const URL = {
   mainUrl: "/",
 
   // auth
@@ -14,3 +14,5 @@ export const URL = {
   clubEditUrl: "/club/:clubId/edit",
   clubListUrl: "/clubs",
 };
+
+export default URL;

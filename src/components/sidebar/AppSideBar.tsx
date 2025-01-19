@@ -9,6 +9,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import URL from "@/config/url";
 import useUserStore from "@/store/userStore";
 import { NavMain } from "@components/nav/NavMain";
 import { NavUser } from "@components/nav/NavUser";
@@ -17,7 +18,7 @@ const data = {
   navMain: [
     {
       title: "홈",
-      url: "#",
+      url: URL.mainUrl,
       icon: House,
     },
     {

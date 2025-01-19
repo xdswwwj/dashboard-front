@@ -1,4 +1,4 @@
-export const API_URL = {
+const API_URL = {
   LOGIN: "/auth/login",
   REGISTER: "/auth/register",
   LOGOUT: "/auth/logout",
@@ -10,4 +10,7 @@ export const API_URL = {
   USERS: "/users",
   USER: "/users/:id",
   INFO_UPDATE: "/user/info-update",
+  GET_USER_INFO: "/user/info",
 };
+
+export default API_URL;

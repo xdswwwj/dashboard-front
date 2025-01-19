@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { getUserIndex } from "@/lib/auth";
 import { useUpdateUserInfoMutation } from "@/services/api";
 import useUserStore from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,28 +29,24 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const MyPageContainer: React.FC = () => {
-  const { user } = useUserStore();
+  const { user, token } = useUserStore();
+  const userIndex = getUserIndex(token);
+
   const accountForm = useForm<z.infer<typeof accountFormSchema>>({
     resolver: zodResolver(accountFormSchema),
     defaultValues: accountDefaultValues({
+      id: userIndex,
       name: user?.name ? user.name : "",
       email: user?.email ? user.email : "",
       nickname: user?.nickname ? user.nickname : "",
       sex: user?.sex ? user.sex : 0,
     }),
   });
-  const { mutate } = useUpdateUserInfoMutation();
+  const mutate = useUpdateUserInfoMutation();
 
   const onSubmit = (values: z.infer<typeof accountFormSchema>) => {
     console.log(values);
-    mutate(values, {
-      onSuccess: (data) => {
-        console.log("Update successful", data);
-      },
-      onError: (error) => {
-        console.error("Update failed", error);
-      },
-    });
+    mutate?.mutate(values);
   };
   return (
     <>
@@ -110,14 +107,14 @@ const MyPageContainer: React.FC = () => {
                         <div className="flex gap-2">
                           <Button
                             type="button"
-                            variant={field.value === 1 ? "default" : "outline"} // 선택된 상태에 따라 스타일 변경
+                            variant={field.value === 1 ? "default" : "outline"}
                             onClick={() => field.onChange(1)} // 남성 선택 시
                           >
                             남
                           </Button>
                           <Button
                             type="button"
-                            variant={field.value === 2 ? "default" : "outline"} // 선택된 상태에 따라 스타일 변경
+                            variant={field.value === 2 ? "default" : "outline"}
                             onClick={() => field.onChange(2)} // 여성 선택 시
                           >
                             여
@@ -130,7 +127,7 @@ const MyPageContainer: React.FC = () => {
                 />
               </CardContent>
               <CardFooter>
-                <Button type="submit">Save changes</Button>
+                <Button type="submit">저장</Button>
               </CardFooter>
             </form>
           </FormProvider>
@@ -141,7 +138,7 @@ const MyPageContainer: React.FC = () => {
             <CardHeader>
               <CardTitle>Password</CardTitle>
               <CardDescription>
-                Change your password here. After saving, you'll be logged out.
+                비밀번호를 변경하세요. 저장 후 로그아웃됩니다.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-2">

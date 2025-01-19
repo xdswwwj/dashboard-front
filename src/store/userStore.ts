@@ -29,7 +29,7 @@ const useUserStore = create<UserState>()(
       setToken: (payload: string) => set({ token: payload }),
       user: null,
       setUser: (payload) => set({ user: payload }),
-      clearUser: () => set({ user: null }),
+      clearUser: () => set({ user: null, token: "" }),
     }),
     persistOptions.user
   )
