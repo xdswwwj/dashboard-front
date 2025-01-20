@@ -4,6 +4,7 @@ import HomePage from "@pages/HomePage";
 import LoginPage from "@pages/LoginPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
+import ClubPage from "./pages/Club/ClubPage";
 import MyPage from "./pages/MyPage";
 import SocialLoginSuccessRedirect from "./routes/SocialLoginSuccessRedirect";
 
@@ -31,6 +32,14 @@ function App() {
             element={
               <AuthGuard>
                 <HomePage />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path={URL.clubUrl}
+            element={
+              <AuthGuard>
+                <ClubPage />
               </AuthGuard>
             }
           />

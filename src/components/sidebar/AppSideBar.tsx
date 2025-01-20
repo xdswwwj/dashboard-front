@@ -23,7 +23,7 @@ const data = {
     },
     {
       title: "클럽",
-      url: "#",
+      url: URL.clubUrl,
       icon: Club,
     },
     {
