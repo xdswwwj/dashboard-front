@@ -46,15 +46,17 @@ export const authCheckMutation = (props: AuthCheckMutationProps) => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: async (data: any) =>
-      authFetcher(
+    mutationFn: async (data: any) => {
+      console.log(data);
+      return authFetcher(
         apiUrl,
         {
           method,
           body: JSON.stringify(data),
         },
         token
-      ),
+      );
+    },
     onMutate: async (data) => {
       if (queryKey) {
         await queryClient.cancelQueries({ queryKey });

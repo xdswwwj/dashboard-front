@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { getUserIndex } from "@/lib/auth";
 import { useUpdateUserInfoMutation } from "@/services/api";
 import useUserStore from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -29,13 +28,11 @@ import { FormProvider, useForm } from "react-hook-form";
 import { z } from "zod";
 
 const MyPageContainer: React.FC = () => {
-  const { user, token } = useUserStore();
-  const userIndex = getUserIndex(token);
+  const { user } = useUserStore();
 
   const accountForm = useForm<z.infer<typeof accountFormSchema>>({
     resolver: zodResolver(accountFormSchema),
     defaultValues: accountDefaultValues({
-      id: userIndex,
       name: user?.name ? user.name : "",
       email: user?.email ? user.email : "",
       nickname: user?.nickname ? user.nickname : "",

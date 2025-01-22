@@ -5,7 +5,7 @@ import { checkExpToken } from "@/lib/auth";
 import { fetcher } from "@/lib/fetch";
 import useUserStore from "@/store/userStore";
 import { useQuery } from "@tanstack/react-query";
-import { jwtDecode, JwtPayload } from "jwt-decode";
+import { JwtPayload } from "jwt-decode";
 import { authCheckMutation, HttpMethodEnum } from "./common";
 
 export interface JwtTokenPayload extends JwtPayload {
@@ -26,10 +26,6 @@ export const useKakaoLogin = () => {
 
 export const useUserInfo = (options = {}) => {
   const { token: storeToken, clearUser } = useUserStore();
-  const token: JwtTokenPayload | null = storeToken
-    ? jwtDecode(storeToken)
-    : null;
-
   if (!storeToken || checkExpToken(storeToken) === false) {
     clearUser();
     window.location.replace(URL.loginUrl);
@@ -41,7 +37,6 @@ export const useUserInfo = (options = {}) => {
         API_URL.GET_USER_INFO,
         {
           method: "POST",
-          body: JSON.stringify({ id: token?.id }),
         },
         storeToken
       ),
@@ -58,6 +53,7 @@ export const useUpdateUserInfoMutation = () => {
     queryKey: ["userInfo"],
     onSuccess: (res) => {
       const { data } = res;
+      console.log("data >>", data);
       setUser({ ...user, ...data });
       toast({
         title: "Success!",
