@@ -2,7 +2,7 @@ import URL from "@/config/url";
 import { checkExpToken } from "@/lib/auth";
 import { authFetcher } from "@/lib/fetch";
 import useUserStore from "@/store/userStore";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export enum HttpMethodEnum {
   GET = "GET",
@@ -25,6 +25,17 @@ interface AuthCheckMutationProps {
   onError?: (error: unknown) => void; // 에러 시 콜백
   onSettled?: () => void; // 요청 완료 시 콜백
 }
+
+export const checkUserToken = () => {
+  const { token, clearUser } = useUserStore();
+
+  if (!token || checkExpToken(token) === false) {
+    clearUser();
+    window.location.replace(URL.loginUrl);
+    return "";
+  }
+  return token;
+};
 export const authCheckMutation = (props: AuthCheckMutationProps) => {
   const {
     apiUrl,
@@ -35,12 +46,9 @@ export const authCheckMutation = (props: AuthCheckMutationProps) => {
     onSettled = () => {},
   } = props;
 
-  const { token, clearUser } = useUserStore();
-
-  if (!token || checkExpToken(token) === false) {
-    clearUser();
-    window.location.replace(URL.loginUrl);
-    return null;
+  const token = checkUserToken();
+  if (token === "") {
+    return;
   }
 
   const queryClient = useQueryClient();
@@ -88,5 +96,50 @@ export const authCheckMutation = (props: AuthCheckMutationProps) => {
       }
       onSettled();
     },
+  });
+};
+
+interface AuthCheckQueryProps {
+  apiUrl: string; // 요청할 API 경로
+  queryKey: string[]; // React Query에서 사용할 키
+  method: HttpMethod;
+  options?: object;
+  enabled?: boolean; // 쿼리 실행 여부 (기본값: true)
+}
+
+export const useAuthCheckQuery = ({
+  apiUrl,
+  queryKey,
+  enabled = true,
+  method,
+  options = {},
+}: AuthCheckQueryProps) => {
+  const token = checkUserToken();
+
+  // 토큰이 없으면 null 반환 (쿼리 실행 안 함)
+  if (!token) {
+    return {
+      data: null,
+      isError: true,
+      isLoading: false,
+      refetch: () => {},
+    };
+  }
+
+  return useQuery({
+    queryKey,
+    queryFn: async () => {
+      const response = await authFetcher(
+        apiUrl,
+        {
+          method: method,
+        },
+        token
+      );
+      return response;
+    },
+    enabled, // 실행 여부 (false면 쿼리 실행 안 됨)
+    staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지
+    ...options,
   });
 };

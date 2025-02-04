@@ -4,8 +4,11 @@ import HomePage from "@pages/HomePage";
 import LoginPage from "@pages/LoginPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
+import ClubCreatePage from "./pages/Club/ClubCreatePage";
+import ClubListPage from "./pages/Club/ClubListPage";
 import ClubPage from "./pages/Club/ClubPage";
 import MyPage from "./pages/MyPage";
+import NotFoundPage from "./pages/NotFound/NotFound";
 import SocialLoginSuccessRedirect from "./routes/SocialLoginSuccessRedirect";
 
 function App() {
@@ -43,6 +46,24 @@ function App() {
               </AuthGuard>
             }
           />
+          <Route
+            path={URL.clubCreateUrl}
+            element={
+              <AuthGuard>
+                <ClubCreatePage />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path={URL.clubListUrl}
+            element={
+              <AuthGuard>
+                <ClubListPage />
+              </AuthGuard>
+            }
+          />
+          {/* 404 페이지 라우팅 */}
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Router>
     </>

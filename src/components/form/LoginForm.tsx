@@ -11,7 +11,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
-import { loginFormSchema } from "./schema/schema";
+import { loginFormSchema } from "./schema/auth.schema";
 
 interface LoginFormProps {
   form: UseFormReturn<{ id: string; password: string }, any, undefined>;

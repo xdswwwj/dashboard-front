@@ -23,8 +23,17 @@ const data = {
     },
     {
       title: "클럽",
-      url: URL.clubUrl,
       icon: Club,
+      items: [
+        {
+          title: "클럽 대시보드",
+          url: URL.clubUrl,
+        },
+        {
+          title: "클럽 목록",
+          url: URL.clubListUrl,
+        },
+      ],
     },
     {
       title: "등산",

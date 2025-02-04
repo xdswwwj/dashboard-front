@@ -1,7 +1,7 @@
 import CommonHeader from "@/components/header/CommonHeader";
 import AppSidebar from "@/components/sidebar/AppSideBar";
 import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { useUserInfo } from "@/services/api";
+import { useUserInfo } from "@/services/auth/auth.query";
 import useUserStore from "@/store/userStore";
 import React, { ReactNode, useEffect } from "react";
 
@@ -13,7 +13,7 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({ children }) => {
   const { user, setUser } = useUserStore();
 
   // user 정보가 없을 때만 API 요청
-  const { data, isLoading, isError, error } = useUserInfo({
+  const { data, isLoading, isError } = useUserInfo({
     enabled: !user,
   });
 
@@ -30,8 +30,8 @@ const CommonLayout: React.FC<CommonLayoutProps> = ({ children }) => {
   }
 
   // 에러 상태 처리
-  if (user === null && isError) {
-    return <div>Error: {error?.message || "An error occurred"}</div>;
+  if (user === null && (isError || data.error !== null)) {
+    return <div>Error: {data.error || "An error occurred"}</div>;
   }
 
   return (

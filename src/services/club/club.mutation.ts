@@ -1,23 +1,23 @@
 import API_URL from "@/config/api.url";
+import URL from "@/config/url";
 import { useToast } from "@/hooks/use-toast";
-import useUserStore from "@/store/userStore";
+import { useNavigate } from "react-router-dom";
 import { authCheckMutation, HttpMethodEnum } from "../common";
 
-export const useUpdateUserInfoMutation = () => {
-  const { user, setUser } = useUserStore();
+export const useCreateClubMutation = () => {
+  const navigate = useNavigate();
   const { toast } = useToast();
   return authCheckMutation({
-    apiUrl: API_URL.INFO_UPDATE,
+    apiUrl: API_URL.CREATE_CLUB,
     method: HttpMethodEnum.POST,
     queryKey: ["userInfo"],
-    onSuccess: (res) => {
-      const { data } = res;
-      setUser({ ...user, ...data });
+    onSuccess: () => {
       toast({
         title: "Success!",
-        description: "Mutation 성공적으로 완료되었습니다.",
+        description: "클럽을 생성하였습니다.",
         duration: 3000,
       });
+      navigate(URL.clubListUrl);
     },
   });
 };

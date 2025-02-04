@@ -1,7 +1,7 @@
 import {
   accountDefaultValues,
   accountFormSchema,
-} from "@/components/form/schema/schema";
+} from "@/components/form/schema/auth.schema";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useUpdateUserInfoMutation } from "@/services/api";
+import { useUpdateUserInfoMutation } from "@/services/auth/auth.mutation";
 import useUserStore from "@/store/userStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
@@ -39,11 +39,10 @@ const MyPageContainer: React.FC = () => {
       sex: user?.sex ? user.sex : 0,
     }),
   });
-  const mutate = useUpdateUserInfoMutation();
+  const updateUserInfoMutate = useUpdateUserInfoMutation();
 
   const onSubmit = (values: z.infer<typeof accountFormSchema>) => {
-    console.log(values);
-    mutate?.mutate(values);
+    updateUserInfoMutate?.mutate(values);
   };
   return (
     <>

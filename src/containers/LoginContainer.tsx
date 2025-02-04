@@ -2,7 +2,7 @@ import LoginForm from "@/components/form/LoginForm";
 import {
   loginDefaultValues,
   loginFormSchema,
-} from "@/components/form/schema/schema";
+} from "@/components/form/schema/auth.schema";
 import { Card, CardContent } from "@/components/ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";

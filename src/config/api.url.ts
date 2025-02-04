@@ -11,6 +11,9 @@ const API_URL = {
   USER: "/users/:id",
   INFO_UPDATE: "/user/info-update",
   GET_USER_INFO: "/user/info",
+  // club
+  CREATE_CLUB: "/club/create",
+  LIST_CLUB: "/club/list",
 };
 
 export default API_URL;
