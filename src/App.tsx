@@ -1,13 +1,14 @@
 import URL from "@/config/url";
 import AuthGuard from "@/guard/AuthGuard";
+import LoginPage from "@/pages/Auth/LoginPage";
 import HomePage from "@pages/HomePage";
-import LoginPage from "@pages/LoginPage";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
+import MyPage from "./pages/Auth/MyPage";
+import RegisterPage from "./pages/Auth/RegisterPage";
 import ClubCreatePage from "./pages/Club/ClubCreatePage";
 import ClubListPage from "./pages/Club/ClubListPage";
 import ClubPage from "./pages/Club/ClubPage";
-import MyPage from "./pages/MyPage";
 import NotFoundPage from "./pages/NotFound/NotFound";
 import SocialLoginSuccessRedirect from "./routes/SocialLoginSuccessRedirect";
 
@@ -22,6 +23,7 @@ function App() {
             element={<SocialLoginSuccessRedirect />}
           />
           <Route path={URL.loginUrl} element={<LoginPage />} />
+          <Route path={URL.registerUrl} element={<RegisterPage />} />
           <Route
             path={URL.mypageUrl}
             element={

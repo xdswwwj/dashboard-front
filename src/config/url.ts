@@ -4,7 +4,7 @@ const URL = {
   // auth
   loginUrl: "/login",
   loginSuccessUrl: "/login-success",
-  resigterUrl: "/register",
+  registerUrl: "/register",
   mypageUrl: "/my-page",
 
   // club

@@ -1,4 +1,4 @@
-import MyPageContainer from "@/containers/MyPageContainer";
+import MyPageContainer from "@/containers/auth/MyPageContainer";
 import CommonLayout from "@/layout/CommonLayout";
 import React from "react";
 

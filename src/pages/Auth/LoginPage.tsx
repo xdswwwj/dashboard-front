@@ -1,4 +1,4 @@
-import LoginContainer from "@/containers/LoginContainer";
+import LoginContainer from "@/containers/auth/LoginContainer";
 import AuthLayout from "@/layout/AuthLayout";
 import React from "react";
 

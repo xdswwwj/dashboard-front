@@ -139,7 +139,6 @@ export const useAuthCheckQuery = ({
       return response;
     },
     enabled, // 실행 여부 (false면 쿼리 실행 안 됨)
-    staleTime: 1000 * 60 * 5, // 5분 동안 데이터 유지
     ...options,
   });
 };

@@ -1,7 +1,9 @@
 import { LoginJpg } from "@/assets";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import URL from "@/config/url";
 import { UseFormReturn } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { z } from "zod";
 import SocialLoginButton from "../button/SocialLoginButton";
 import {
@@ -73,9 +75,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ form }) => {
           <SocialLoginButton />
           <div className="text-center text-sm">
             계정이 없으신가요 ?
-            <a href="#" className="underline underline-offset-4">
+            <Link to={URL.registerUrl} className="underline underline-offset-4">
               회원가입
-            </a>
+            </Link>
           </div>
         </div>
       </form>
