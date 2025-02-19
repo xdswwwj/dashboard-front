@@ -24,6 +24,7 @@ const data = {
     {
       title: "클럽",
       icon: Club,
+      url: "#",
       items: [
         {
           title: "클럽 대시보드",
