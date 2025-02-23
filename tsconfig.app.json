@@ -24,7 +24,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@assets/*": ["src/assets/*"],
+      "@assets/*": ["public/assets/*"],
       "@components/*": ["src/components/*"],
       "@containers/*": ["src/containers/*"],
       "@hooks/*": ["src/hooks/*"],
@@ -37,5 +37,5 @@
       "@store/*": ["src/store/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "public/assets"]
 }

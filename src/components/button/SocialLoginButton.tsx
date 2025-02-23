@@ -1,7 +1,7 @@
 import {
   KakaotalkLoginButtonIcon,
   NaverLoginButtonIcon,
-} from "@/assets/socialIcon";
+} from "@assets/socialIcon";
 import React from "react";
 import { Button } from "../ui/button";
 
