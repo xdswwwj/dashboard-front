@@ -1,0 +1,22 @@
+name: Deploy on PR from develop to main
+on:
+  pull_request:
+    branches:
+      - main # PR의 대상이 main 브랜치여야 함
+    types: [opened, synchronize, reopened]
+
+jobs:
+  deploy:
+    if: github.event.pull_request.head.ref == 'develop' # PR의 source가 develop인지 체크
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # 필요한 빌드나 테스트 단계를 추가할 수 있습니다.
+
+      - name: Deploy Application
+        run: |
+          echo "Deploying application..."
+          # 여기에 배포 스크립트나 커맨드를 추가하세요.
