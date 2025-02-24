@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import URL from "@/config/url";
-import { LoginJpg } from "@assets/index";
+import loginImage from "@assets/login.jpg";
 import { UseFormReturn } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { z } from "zod";
@@ -82,7 +82,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ form }) => {
         </div>
       </form>
       <div className="relative hidden bg-muted md:block">
-        <LoginJpg />
+        <img src={loginImage} alt="로그인 이미지" className="h-full" />
+        {/* <LoginJpg /> */}
       </div>
     </>
   );
