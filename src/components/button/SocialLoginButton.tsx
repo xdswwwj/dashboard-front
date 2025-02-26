@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "@/lib/config";
 import {
   KakaotalkLoginButtonIcon,
   NaverLoginButtonIcon,
@@ -6,7 +7,7 @@ import React from "react";
 import { Button } from "../ui/button";
 
 const handleKakaoLogin = () => {
-  window.location.href = "http://localhost:3000/auth/kakao";
+  window.location.href = `${API_BASE_URL}/auth/kakao`;
 };
 
 const SocialLoginButton: React.FC = () => {

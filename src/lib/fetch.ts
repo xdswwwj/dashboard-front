@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3000";
+import { API_BASE_URL } from "./config";
 
 export const fetcher = async (
   endpoint: string,
@@ -6,7 +6,7 @@ export const fetcher = async (
   token?: string | null
 ): Promise<any> => {
   try {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const authFetcher = async (
   token: string
 ): Promise<any> => {
   try {
-    const response = await fetch(`${BASE_URL}${endpoint}`, {
+    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
       ...options,
       headers: {
         "Content-Type": "application/json",
