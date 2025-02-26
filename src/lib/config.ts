@@ -1,5 +1,5 @@
 export const VITE_ENV = import.meta.env;
-
+console.log("VITE_ENV >>", VITE_ENV);
 export const MODE = VITE_ENV.MODE;
 export const BASE_URL =
   MODE === "development"
