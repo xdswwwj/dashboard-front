@@ -11,9 +11,6 @@ const SocialLoginSuccessRedirect: React.FC = () => {
     const params = new URLSearchParams(window.location.search);
     const token = params.get("token");
 
-    alert(params);
-    alert(token);
-
     if (storeToken) {
       navigate("/");
       return;
