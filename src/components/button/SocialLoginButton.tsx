@@ -6,7 +6,7 @@ import {
 import React from "react";
 import { Button } from "../ui/button";
 
-console.log("API_BASE_URL >>", API_BASE_URL);
+console.log("1API_BASE_URL >>", API_BASE_URL);
 const handleKakaoLogin = () => {
   window.location.href = `${API_BASE_URL}/auth/kakao`;
 };
