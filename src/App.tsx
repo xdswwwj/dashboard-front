@@ -13,8 +13,6 @@ import NotFoundPage from "./pages/NotFound/NotFound";
 import SocialLoginSuccessRedirect from "./routes/SocialLoginSuccessRedirect";
 
 function App() {
-  console.log("Vite Mode:", import.meta.env.MODE);
-  console.log("Vite env >>", import.meta.env);
   return (
     <>
       <Toaster />
