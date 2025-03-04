@@ -1,8 +1,6 @@
 import { API_BASE_URL } from "@/lib/config";
-import {
-  KakaotalkLoginButtonIcon,
-  NaverLoginButtonIcon,
-} from "@assets/socialIcon";
+import kakaoImage from "@assets/socialIcon/kakaoLoginButtonIcon.png";
+import naverImage from "@assets/socialIcon/naverLoginButtonIcon.png";
 import React from "react";
 import { Button } from "../ui/button";
 
@@ -22,10 +20,10 @@ const SocialLoginButton: React.FC = () => {
           handleKakaoLogin();
         }}
       >
-        <KakaotalkLoginButtonIcon />
+        <img src={kakaoImage} alt="로그인 이미지" className="h-full" />
       </Button>
       <Button variant="link" className="w-full">
-        <NaverLoginButtonIcon />
+        <img src={naverImage} alt="로그인 이미지" className="h-full" />
       </Button>
     </div>
   );
