@@ -1,5 +1,5 @@
 import { API_BASE_URL } from "@/lib/config";
-import kakaoImage from "@assets/socialIcon/kakaoLoginButtonIcon.png";
+import kakaoImage from "@assets/socialIcon/kakaotalkLoginButtonIcon.png";
 import naverImage from "@assets/socialIcon/naverLoginButtonIcon.png";
 import React from "react";
 import { Button } from "../ui/button";
