@@ -1,3 +1,5 @@
+import { toast } from "@/hooks/use-toast";
+import { logout } from "./auth";
 import { API_BASE_URL } from "./config";
 
 export const authFetcher = async (
@@ -16,8 +18,18 @@ export const authFetcher = async (
 
     if (!response.ok) {
       const errorData = await response.json();
-      console.log("errorData >>", errorData);
-      console.log("response >>", response);
+      if (
+        response.status === 401 &&
+        errorData.message === "Invalid or expired token"
+      ) {
+        toast({
+          title: "Error!",
+          description: "로그인이 필요합니다.",
+          duration: 3000,
+        });
+        logout();
+        return;
+      }
       throw new Error(errorData.message || "API 요청 실패");
     }
 
