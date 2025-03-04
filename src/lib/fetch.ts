@@ -17,6 +17,7 @@ export const authFetcher = async (
     if (!response.ok) {
       const errorData = await response.json();
       console.log("errorData >>", errorData);
+      console.log("response >>", response);
       throw new Error(errorData.message || "API 요청 실패");
     }
 
