@@ -1,18 +1,7 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import URL from "@/config/url";
 import loginImage from "@assets/login.jpg";
 import { UseFormReturn } from "react-hook-form";
-import { Link } from "react-router-dom";
 import { z } from "zod";
 import SocialLoginButton from "../button/SocialLoginButton";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "../ui/form";
 import { loginFormSchema } from "./schema/auth.schema";
 
 interface LoginFormProps {
@@ -33,7 +22,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ form }) => {
               산이랑에 오신 것을 환영합니다.
             </p>
           </div>
-          <div className="grid gap-2">
+          {/* <div className="grid gap-2">
             <FormField
               control={form.control}
               name="id"
@@ -47,9 +36,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ form }) => {
                 </FormItem>
               )}
             />
-          </div>
-          <div className="grid gap-2">
-            {/* Password Field */}
+          </div> */}
+          {/* Password Field */}
+          {/* <div className="grid gap-2">
             <FormField
               control={form.control}
               name="password"
@@ -66,19 +55,19 @@ const LoginForm: React.FC<LoginFormProps> = ({ form }) => {
           </div>
           <Button type="submit" className="w-full">
             로그인
-          </Button>
+          </Button> */}
           <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
             <span className="relative z-10 bg-background px-2 text-muted-foreground">
               소셜 로그인
             </span>
           </div>
           <SocialLoginButton />
-          <div className="text-center text-sm">
+          {/* <div className="text-center text-sm">
             계정이 없으신가요 ?
             <Link to={URL.registerUrl} className="underline underline-offset-4">
               회원가입
             </Link>
-          </div>
+          </div> */}
         </div>
       </form>
       <div className="relative hidden bg-muted md:block">
