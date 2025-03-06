@@ -1,3 +1,4 @@
+import url from "@/config/url";
 import useUserStore from "@/store/userStore";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +13,8 @@ const SocialLoginSuccessRedirect: React.FC = () => {
     const token = params.get("token");
 
     if (storeToken) {
-      navigate("/");
+      navigate(url.clubUrl);
+      // navigate(url.mainUrl);
       return;
     }
 
@@ -20,7 +22,8 @@ const SocialLoginSuccessRedirect: React.FC = () => {
       setToken(token);
 
       // 메인 페이지로 리다이렉트
-      navigate("/");
+      navigate(url.clubUrl);
+      // navigate(url.mainUrl);
     }
   }, [navigate]);
 

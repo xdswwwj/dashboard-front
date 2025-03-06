@@ -1,6 +1,6 @@
 "use client";
 
-import { ClipboardList, Club, House, MapIcon, ShieldHalf } from "lucide-react";
+import { ClipboardList, Club } from "lucide-react";
 import * as React from "react";
 
 import {
@@ -16,11 +16,11 @@ import { NavUser } from "@components/nav/NavUser";
 
 const data = {
   navMain: [
-    {
-      title: "홈",
-      url: URL.mainUrl,
-      icon: House,
-    },
+    // {
+    //   title: "홈",
+    //   url: URL.mainUrl,
+    //   icon: House,
+    // },
     {
       title: "클럽",
       icon: Club,
@@ -36,40 +36,40 @@ const data = {
         },
       ],
     },
-    {
-      title: "등산",
-      url: "#",
-      icon: MapIcon,
-      items: [
-        {
-          title: "기록",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "랭킹",
-      url: "#",
-      icon: ShieldHalf,
-      items: [
-        {
-          title: "명예의 전당",
-          url: "#",
-        },
-        {
-          title: "개인 랭킹",
-          url: "#",
-        },
-        {
-          title: "클럽 랭킹",
-          url: "#",
-        },
-        {
-          title: "기간별 랭킹",
-          url: "#",
-        },
-      ],
-    },
+    // {
+    //   title: "등산",
+    //   url: "#",
+    //   icon: MapIcon,
+    //   items: [
+    //     {
+    //       title: "기록",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
+    // {
+    //   title: "랭킹",
+    //   url: "#",
+    //   icon: ShieldHalf,
+    //   items: [
+    //     {
+    //       title: "명예의 전당",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "개인 랭킹",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "클럽 랭킹",
+    //       url: "#",
+    //     },
+    //     {
+    //       title: "기간별 랭킹",
+    //       url: "#",
+    //     },
+    //   ],
+    // },
     {
       title: "게시판",
       url: "#",
