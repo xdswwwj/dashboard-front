@@ -10,7 +10,13 @@ import { jwtDecode } from "jwt-decode";
 import { Club, SearchIcon } from "lucide-react";
 import React, { useState } from "react";
 
-const ClubListContainer: React.FC = () => {
+interface ClubListContainerProps {
+  isMyClub?: boolean;
+  title?: string;
+}
+
+const ClubListContainer: React.FC<ClubListContainerProps> = (props) => {
+  const { isMyClub, title } = props;
   const { token } = useUserStore();
   // 사용자가 입력하는 검색어 상태
   const [searchInput, setSearchInput] = useState("");
@@ -20,11 +26,13 @@ const ClubListContainer: React.FC = () => {
   const [page, setPage] = useState(1);
 
   // appliedSearch와 page를 기반으로 데이터 요청
-  const { data: clubList, isLoading } = useClubList(appliedSearch, page);
+  const { data: clubList, isLoading } = useClubList({
+    search: appliedSearch,
+    page,
+    isMyClub,
+  });
 
   const decoded: JwtTokenPayload = jwtDecode(token);
-  console.log("user >>", decoded);
-  console.log("clubList >>", clubList);
 
   // 검색 폼 제출 시
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,25 +50,29 @@ const ClubListContainer: React.FC = () => {
   const { totalPages } = meta;
   return (
     <>
-      <form
-        onSubmit={handleSubmit}
-        className="flex items-center space-x-2 mb-4"
-      >
-        <Input
-          type="text"
-          placeholder="클럽 검색"
-          value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
-          className="w-full"
-        />
-        <Button type="submit">
-          <SearchIcon className="h-4 w-4 mr-2" />
-          검색
-        </Button>
-      </form>
+      {!isMyClub && (
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center space-x-2 mb-4"
+        >
+          <Input
+            type="text"
+            placeholder="클럽 검색"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
+            className="w-full"
+          />
+          <Button type="submit">
+            <SearchIcon className="h-4 w-4 mr-2" />
+            검색
+          </Button>
+        </form>
+      )}
 
       <div className="w-full max-w p-4 bg-white rounded-lg shadow mb-4">
-        <h2 className="text-lg font-semibold mb-4">클럽 목록</h2>
+        <h2 className="text-lg font-semibold mb-4">
+          {title ? title : "클럽 목록"}
+        </h2>
         <div className="space-y-3">
           {clubList.data.length === 0 && <>검색 결과가 없습니다.</>}
           {clubList?.data?.map((club: any, index: number) => (
@@ -87,11 +99,13 @@ const ClubListContainer: React.FC = () => {
       </div>
 
       {/* Pagination Controls */}
-      <Pagination
-        currentPage={page}
-        totalPages={totalPages}
-        onPageChange={(newPage) => setPage(newPage)}
-      />
+      {!isMyClub && (
+        <Pagination
+          currentPage={page}
+          totalPages={totalPages}
+          onPageChange={(newPage) => setPage(newPage)}
+        />
+      )}
     </>
   );
 };
