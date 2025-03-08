@@ -52,6 +52,11 @@ const ClubListContainer: React.FC<ClubListContainerProps> = (props) => {
     return <Skeleton className="w-[100px] h-[20px] rounded-full" />;
   }
 
+  const emptyList = clubList?.data?.length === 0;
+  const emptyListMessage: React.ReactNode = isMyClub
+    ? "내 클럽 목록이 없습니다."
+    : "검색 결과가 없습니다.";
+
   const { meta } = clubList;
   const { totalPages } = meta;
   return (
@@ -80,7 +85,7 @@ const ClubListContainer: React.FC<ClubListContainerProps> = (props) => {
           {title ? title : "클럽 목록"}
         </h2>
         <div className="space-y-3">
-          {clubList.data.length === 0 && <>검색 결과가 없습니다.</>}
+          {emptyList && emptyListMessage}
           {clubList?.data?.map((club: any, index: number) => (
             <div key={index} className="flex items-center justify-between">
               {/* Avatar & Info */}
