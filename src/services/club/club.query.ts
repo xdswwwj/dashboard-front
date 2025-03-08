@@ -4,11 +4,12 @@ import { HttpMethodEnum, useAuthCheckQuery } from "../common";
 interface UseClubListProps {
   search: string;
   page: number;
+  queryKey: string;
   isMyClub?: boolean;
 }
 
 export const useClubList = (props: UseClubListProps) => {
-  const { search, page, isMyClub = false } = props;
+  const { search, page, isMyClub = false, queryKey } = props;
   // API에서 page와 search 파라미터를 사용할 수 있도록 URL에 쿼리스트링을 추가합니다.
   const url = `${API_URL.LIST_CLUB}?page=${page}&isMyClub=${isMyClub}${
     search ? `&search=${encodeURIComponent(search)}` : ""
@@ -16,7 +17,10 @@ export const useClubList = (props: UseClubListProps) => {
 
   return useAuthCheckQuery({
     apiUrl: url,
-    queryKey: ["clubList", search, page.toString()], // 검색어와 페이지가 변경되면 자동 refetch
+    queryKey: [queryKey, search, page.toString()], // 검색어와 페이지가 변경되면 자동 refetch
     method: HttpMethodEnum.GET,
+    options: {
+      cacheTime: 0,
+    },
   });
 };

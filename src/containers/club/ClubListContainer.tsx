@@ -3,8 +3,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import { QUERY_KEY } from "@/lib/fetch";
 import { JwtTokenPayload } from "@/services/api";
-import { useClubList } from "@/services/club/club.quert";
+import { useClubList } from "@/services/club/club.query";
 import useUserStore from "@/store/userStore";
 import { jwtDecode } from "jwt-decode";
 import { Club, SearchIcon } from "lucide-react";
@@ -19,17 +20,22 @@ const ClubListContainer: React.FC<ClubListContainerProps> = (props) => {
   const { isMyClub, title } = props;
   const { token } = useUserStore();
   // 사용자가 입력하는 검색어 상태
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState<string>("");
   // 실제 API에 반영될 검색어 상태 (검색 버튼 클릭 시 업데이트)
-  const [appliedSearch, setAppliedSearch] = useState("");
+  const [appliedSearch, setAppliedSearch] = useState<string>("");
   // 현재 페이지 상태
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
+
+  const queryKey: string = isMyClub
+    ? QUERY_KEY.MY_CLUB_LIST
+    : QUERY_KEY.CLUB_LIST;
 
   // appliedSearch와 page를 기반으로 데이터 요청
   const { data: clubList, isLoading } = useClubList({
     search: appliedSearch,
     page,
     isMyClub,
+    queryKey,
   });
 
   const decoded: JwtTokenPayload = jwtDecode(token);

@@ -39,3 +39,8 @@ export const authFetcher = async (
     throw error;
   }
 };
+
+export const QUERY_KEY = {
+  CLUB_LIST: "CLUB_LIST",
+  MY_CLUB_LIST: "MY_CLUB_LIST",
+};
