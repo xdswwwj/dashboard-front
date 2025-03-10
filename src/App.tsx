@@ -6,6 +6,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import { Toaster } from "./components/ui/toaster";
 import MyPage from "./pages/Auth/MyPage";
 import RegisterPage from "./pages/Auth/RegisterPage";
+import DevelopBoardPage from "./pages/Board/DevelopBoardPage";
+import FreeBoardPage from "./pages/Board/FreeBoardPage";
 import ClubCreatePage from "./pages/Club/ClubCreatePage";
 import ClubListPage from "./pages/Club/ClubListPage";
 import ClubPage from "./pages/Club/ClubPage";
@@ -61,6 +63,22 @@ function App() {
             element={
               <AuthGuard>
                 <ClubListPage />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path={URL.developBoard}
+            element={
+              <AuthGuard>
+                <DevelopBoardPage />
+              </AuthGuard>
+            }
+          />
+          <Route
+            path={URL.freeBoard}
+            element={
+              <AuthGuard>
+                <FreeBoardPage />
               </AuthGuard>
             }
           />

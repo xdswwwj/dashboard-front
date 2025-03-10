@@ -77,11 +77,11 @@ const data = {
       items: [
         {
           title: "자유게시판",
-          url: "#",
+          url: URL.freeBoard,
         },
         {
           title: "개선사항 요청",
-          url: "#",
+          url: URL.developBoard,
         },
       ],
     },
