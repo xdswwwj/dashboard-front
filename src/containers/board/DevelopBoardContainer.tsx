@@ -100,8 +100,7 @@ export function DataTable<TData, TValue>({
     </div>
   );
 }
-
-async function getData(): Promise<Payment[]> {
+function getData(): Payment[] {
   // Fetch data from your API here.
   return [
     {
@@ -119,8 +118,8 @@ async function getData(): Promise<Payment[]> {
   ];
 }
 
-const DevelopBoardContainer: React.FC = async () => {
-  const data = await getData();
+const DevelopBoardContainer: React.FC = () => {
+  const data = getData();
   return <DataTable columns={columns} data={data} />;
 };
 
