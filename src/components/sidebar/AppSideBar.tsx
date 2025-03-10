@@ -80,7 +80,7 @@ const data = {
           url: URL.freeBoard,
         },
         {
-          title: "개선사항 요청",
+          title: "개발 현황 게시판",
           url: URL.developBoard,
         },
       ],
